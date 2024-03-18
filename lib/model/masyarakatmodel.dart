@@ -1,4 +1,4 @@
-class masyarakat_model {
+class MasyarakatModel {
   String? nik;
   String? nama;
   String? username;
@@ -7,7 +7,7 @@ class masyarakat_model {
   String? createdAt;
   String? updatedAt;
 
-  masyarakat_model(
+  MasyarakatModel(
       {this.nik,
         this.nama,
         this.username,
@@ -16,7 +16,7 @@ class masyarakat_model {
         this.createdAt,
         this.updatedAt});
 
-  masyarakat_model.fromJson(Map<String, dynamic> json) {
+  MasyarakatModel.fromJson(Map<String, dynamic> json) {
     nik = json['nik'];
     nama = json['nama'];
     username = json['username'];
@@ -27,7 +27,7 @@ class masyarakat_model {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['nik'] = nik;
     data['nama'] = nama;
     data['username'] = username;

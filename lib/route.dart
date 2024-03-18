@@ -9,12 +9,12 @@ import 'package:get/get.dart';
 
 class Routes {
   static final routes = [
-    GetPage(name: '/', page: () => Index()),
-    GetPage(name: '/masyarakat', page: () => HomePage()),
-    GetPage(name: '/pengaduan', page: () => Pengaduan()),
-    GetPage(name: '/pengaduan/add', page: () => AddPengaduan()),
+    GetPage(name: '/', page: () => const Index()),
+    GetPage(name: '/masyarakat', page: () => const HomePage()),
+    GetPage(name: '/pengaduan', page: () => const Pengaduan()),
+    GetPage(name: '/pengaduan/add', page: () => const AddPengaduan()),
     GetPage(name: '/pengaduan/edit', page: () => UpdatePengaduan()),
-    GetPage(name: '/petugas', page: () => ViewPetugas()),
-    GetPage(name: '/tanggapan', page: () => ViewTanggapan()),
+    GetPage(name: '/petugas', page: () => const ViewPetugas()),
+    GetPage(name: '/tanggapan', page: () => const ViewTanggapan()),
   ];
 }

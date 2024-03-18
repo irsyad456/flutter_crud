@@ -12,7 +12,7 @@ class Masyarakatcontroller extends GetxController {
   TextEditingController addTelp = TextEditingController();
 
   RxBool isLoading = false.obs;
-  Rx<List<masyarakat_model>> listmodel = Rx<List<masyarakat_model>>([]);
+  Rx<List<MasyarakatModel>> listmodel = Rx<List<MasyarakatModel>>([]);
 
   @override
   void onInit() {
@@ -28,17 +28,14 @@ class Masyarakatcontroller extends GetxController {
       if (response.statusCode == 200) {
         final content = jsonDecode(response.body);
         for (Map<String, dynamic> i in content) {
-          listmodel.value.add(masyarakat_model.fromJson(i));
-          // print(listmodel.value.length);
+          listmodel.value.add(MasyarakatModel.fromJson(i));
         }
         isLoading.value = false;
       } else {
         isLoading.value = false;
-        print('Error');
       }
     } catch (e) {
       isLoading.value = false;
-      print(e.toString());
     }
   }
 
@@ -51,18 +48,15 @@ class Masyarakatcontroller extends GetxController {
         headers: {'Content-Type': 'application/json'},
       );
       if (response.statusCode == 201) {
-        final newData = masyarakat_model.fromJson(data);
+        final newData = MasyarakatModel.fromJson(data);
         listmodel.value.add(newData);
         isLoading.value = false;
-        print('data berhasil ditambahkan');
         Get.back();
       } else {
         isLoading.value = false;
-        print('data gagal ditambahkan');
       }
     } catch (e) {
       isLoading.value = false;
-      print('Terjadi kesalahan: $e');
     }
   }
 
@@ -75,22 +69,19 @@ class Masyarakatcontroller extends GetxController {
         headers: {'Content-Type': 'application/json'},
       );
       if (response.statusCode == 200) {
-        final updatedData = masyarakat_model.fromJson(data);
+        final updatedData = MasyarakatModel.fromJson(data);
         final index = listmodel.value.indexWhere((item) => item.nik == nik);
         if (index != -1) {
           listmodel.value[index] =
               updatedData; // Perbarui data di daftar di Flutter
         }
         isLoading.value = false;
-        print('Data berhasil diperbarui.');
         Get.back();
       } else {
         isLoading.value = false;
-        print('Gagal memperbarui data.');
       }
     } catch (e) {
       isLoading.value = false;
-      print('Terjadi kesalahan: $e');
     }
   }
 
@@ -105,14 +96,11 @@ class Masyarakatcontroller extends GetxController {
       if (response.statusCode == 200) {
         listmodel.value.removeWhere((item) => item.nik == nik);
         isLoading.value = false;
-        print('Data berhasil dihapus.');
       } else {
         isLoading.value = false;
-        print('Gagal menghapus data.');
       }
     } catch (e) {
       isLoading.value = false;
-      print('Terjadi kesalahan: $e');
     }
   }
 }

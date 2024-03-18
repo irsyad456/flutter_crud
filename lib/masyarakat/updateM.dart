@@ -1,50 +1,48 @@
 import 'package:crud/masyarakat/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:crud/controller/Masyarakatcontroller.dart';
 import 'package:crud/model/masyarakatmodel.dart';
 
-class updateData extends StatelessWidget {
+class UpdateData extends StatelessWidget {
   final Masyarakatcontroller masyarakatcontroller = Get.find();
-  final masyarakat_model masyarakat;
+  final MasyarakatModel masyarakat;
 
-  updateData(this.masyarakat);
+  UpdateData(this.masyarakat, {super.key});
 
   @override
   Widget build(BuildContext context) {
     TextEditingController addDataNik = TextEditingController(text: masyarakat.nik);
     TextEditingController addNama = TextEditingController(text: masyarakat.nama);
-    TextEditingController addPasword = TextEditingController(text: masyarakat.password);
     TextEditingController addUsername = TextEditingController(text: masyarakat.username);
     TextEditingController addTelp = TextEditingController(text: masyarakat.telp);
 
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             TextFormField(
               controller: addDataNik,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Nik',
                 // ...
               ),
             ),
-            SizedBox(height: 8,),
+            const SizedBox(height: 8,),
             TextFormField(
               controller: addNama,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Nama',
                 // ...
               ),
             ),
-            SizedBox(height: 8,),
+            const SizedBox(height: 8,),
             TextFormField(
               controller: addUsername,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Username',
                 // ...
               ),
@@ -57,16 +55,16 @@ class updateData extends StatelessWidget {
             //     // ...
             //   ),
             // ),
-            SizedBox(height: 8,),
+            const SizedBox(height: 8,),
             TextFormField(
               controller: addTelp,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 labelText: 'Telepon',
                 // ...
               ),
             ),
 
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 final data = {
@@ -77,11 +75,11 @@ class updateData extends StatelessWidget {
                   'telp': addTelp.text
                 };
                 Masyarakatcontroller().updateData(data, addDataNik.text).then((value) =>
-                Get.off(HomePage()));
+                Get.off(const HomePage()));
 
                 // Di sini, Anda dapat menyimpan data ke Masyarakatcontroller jika diperlukan.
               },
-              child: Text('submit'),
+              child: const Text('submit'),
             ),
           ],
         ),

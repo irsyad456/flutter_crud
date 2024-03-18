@@ -1,7 +1,5 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:crud/model/petugas_model.dart';
 import 'package:http/http.dart' as http;
@@ -22,14 +20,6 @@ class PetugasController extends GetxController {
     getPetugas();
     super.onInit();
   }
-
-  // void updateLevel(String initialLevel, String newLevel) {
-  //   if(initialLevel.isNotEmpty) {
-  //     selectedLevel.value = initialLevel;
-  //   } else {
-  //     selectedLevel.value = newLevel;
-  //   }
-  // }
 
   // Resetting Field And It's Initial Value
   // Only Work In Corresponding Controller
@@ -59,16 +49,13 @@ class PetugasController extends GetxController {
         final content = jsonDecode(response.body);
         for (Map<String, dynamic> i in content) {
           petugasList.value.add(Petugas.fromJson(i));
-          // print(petugasList.value.length);
         }
         loading.value = false;
       } else {
         loading.value = false;
-        print('Error, Status Code: ${response.statusCode}');
       }
     } catch (e) {
       loading.value = false;
-      print(e.toString());
     }
   }
 
@@ -95,15 +82,12 @@ class PetugasController extends GetxController {
         final newData = Petugas.fromJson(data);
         petugasList.value.add(newData);
         loading.value = false;
-        print('data berhasil ditambahkan');
         Get.back();
       } else {
         loading.value = false;
-        print('data gagal ditambahkan');
       }
     } catch (e) {
       loading.value = false;
-      print('Terjadi kesalahan: $e');
     }
   }
 
@@ -131,15 +115,12 @@ class PetugasController extends GetxController {
               updatedData; // Perbarui data di daftar di Flutter
         }
         loading.value = false;
-        print('Data berhasil diperbarui.');
         Get.back();
       } else {
         loading.value = false;
-        print('Gagal memperbarui data dengan status code: ${response.statusCode}');
       }
     } catch (e) {
       loading.value = false;
-      print('Terjadi kesalahan: $e');
     }
   }
 
@@ -154,14 +135,11 @@ class PetugasController extends GetxController {
       if (response.statusCode == 200) {
         petugasList.value.removeWhere((item) => item.id.toString() == id);
         loading.value = false;
-        print('Data berhasil dihapus.');
       } else {
         loading.value = false;
-        print('Gagal menghapus data. Status: ${response.statusCode}');
       }
     } catch (e) {
       loading.value = false;
-      print('Terjadi kesalahan: $e');
     }
   }
 }

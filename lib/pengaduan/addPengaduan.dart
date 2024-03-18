@@ -57,37 +57,9 @@ class AddPengaduan extends StatelessWidget {
                     ],
                   ),
                 )),
-            // Obx(() {
-            //   if (imageController.loading.value) {
-            //     return SizedBox(height: 200);
-            //   } else {
-            //     if (imageController.isWeb.value == false) {
-            //       if (imageController.fileInHandphone != null) {
-            //         return SizedBox(
-            //           height: 300,
-            //           width: 400,
-            //           child: Image.file(imageController.fileInHandphone!),
-            //         );
-            //       } else {
-            //         return const SizedBox(height: 200);
-            //       }
-            //     } else {
-            //       if (imageController.pickedImage.value != null) {
-            //         imageData = imageController.fileInWebsite!;
-            //         return Container(
-            //           height: 200,
-            //           width: 100,
-            //           child: Image.memory(Uint8List.fromList(imageController.pickedImage.value!.bytes!), fit: BoxFit.cover),
-            //         );
-            //       } else {
-            //         return const SizedBox(height: 200);
-            //       }
-            //     }
-            //   }
-            // }),
             Obx(() {
               return imageController.pickedImage.value != null
-                  ? Container(
+                  ? SizedBox(
                       width: 400,
                       height: 200,
                       child: Image.memory(
@@ -104,16 +76,11 @@ class AddPengaduan extends StatelessWidget {
             ElevatedButton(
                 onPressed: () {
                   final data = {'isi_laporan': controller.isiLaporanField.text};
-                  // if(kDebugMode) {print(imageController.fileInWebsite);}
-                  // controller.isiLaporanField.clear();
                   controller
                       .postPengaduan(imageData, data)
-                      .then((value) => Get.off(Pengaduan()));
+                      .then((value) => Get.off(const Pengaduan()));
                 },
                 child: const Text('Submit'))
-
-            // if(imageController.pickedImage != null)
-            //   SizedBox(height: 300, width: 400, child: imageController.web.value == false ? Image.file(imageController.fileInHandphone!) : Image.memory(imageController.fileInWebsite!)),
           ],
         ),
       ),

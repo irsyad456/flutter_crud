@@ -30,15 +30,15 @@ class Petugas {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['nama_petugas'] = this.namaPetugas;
-    data['username'] = this.username;
-    data['password'] = this.password;
-    data['telp'] = this.telp;
-    data['level'] = this.level;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['id'] = id;
+    data['nama_petugas'] = namaPetugas;
+    data['username'] = username;
+    data['password'] = password;
+    data['telp'] = telp;
+    data['level'] = level;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
     return data;
   }
 }

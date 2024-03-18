@@ -1,14 +1,11 @@
 import 'dart:convert';
-import 'dart:typed_data';
 import 'package:crypto/crypto.dart';
 import 'package:crud/controller/upload_image_controller.dart';
 import 'package:crud/model/pengaduan_model.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'dart:io';
 
 class PengaduanController extends GetxController {
   TextEditingController isiLaporanField = TextEditingController();
@@ -32,20 +29,20 @@ class PengaduanController extends GetxController {
         for(Map<String, dynamic> i in content) {
           pengaduanList.value.add(Pengaduan.fromJson(i));
           if(kDebugMode) {
-            // print(i);
           }
         }
         loading.value = false;
-        // if(kDebugMode) {
-        //   print('${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}');
-        // }
       } else {
         loading.value = false;
-        print('Something Happened With Status ${data.statusCode}');
+        if (kDebugMode) {
+          print('Something Happened With Status ${data.statusCode}');
+        }
       }
     } catch(error) {
       loading.value = false;
-      print(error.toString());
+      if (kDebugMode) {
+        print(error.toString());
+      }
     }
   }
 
@@ -105,16 +102,22 @@ class PengaduanController extends GetxController {
         Get.back();
       } else if (sendData.statusCode == 400) {
         loading.value = false;
-        print('Must Include Image');
+        if(kDebugMode){
+          print('Must Include Image');
+        }
       }
       else {
         loading.value = false;
-        print('Cant POST !!!');
-        print(sendData.statusCode);
+        if(kDebugMode){
+          print('Cant POST !!!');
+          print(sendData.statusCode);
+        }
       }
     } catch(error) {
       loading.value = false;
-      print(error);
+      if(kDebugMode){
+        print(error);
+      }
     }
   }
 
@@ -137,7 +140,7 @@ class PengaduanController extends GetxController {
 
       if(kIsWeb) {
         if(image.pickedImage.value != null) {
-          final String filename = image.pickedImage.value!.name ?? 'NULL';
+          final String filename = image.pickedImage.value!.name;
           final String extension = image.pickedImage.value!.extension ?? 'png';
           request.files.add(
             http.MultipartFile.fromBytes('file', image.pickedImage.value!.bytes!, filename: image.pickedImage.value!.name)
@@ -158,32 +161,35 @@ class PengaduanController extends GetxController {
         Get.back();
       } else {
         loading.value = false;
+        if(kDebugMode) {
         print('Error');
+        }
       }
     } catch(error) {
       loading.value = false;
+      if(kDebugMode) {
       print(error);
+      }
     }
   }
 
   Future<void> deletePengaduan(String id) async {
     try {
-      PengaduanController controller = Get.find<PengaduanController>();
       loading.value = true;
       final deleteData = await http.delete(Uri.parse('http://localhost:5000/pengaduan/$id'));
       if(deleteData.statusCode == 200) {
-        // getPengaduan();
-        // pengaduanList.value.removeWhere((element) => element.id.toString() == id);
         loading.value = false;
-        print('Delete Success for id : $id');
       } else {
         loading.value = false;
-        print('error with status code :');
-        print(deleteData.statusCode);
+        if(kDebugMode) {
+          print(deleteData.body);
+        }
       }
     } catch(error) {
       loading.value = false;
-      print(error.toString());
+      if(kDebugMode) {
+        print(error);
+      }
     }
   }
 }

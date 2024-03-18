@@ -1,7 +1,7 @@
 class Pengaduan {
   int? id;
   String? tglPengaduan;
-  Null? nik;
+  int? nik;
   String? isiLaporan;
   String? foto;
   String? url;
@@ -33,16 +33,16 @@ class Pengaduan {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['tgl_pengaduan'] = this.tglPengaduan;
-    data['nik'] = this.nik;
-    data['isi_laporan'] = this.isiLaporan;
-    data['foto'] = this.foto;
-    data['url'] = this.url;
-    data['status'] = this.status;
-    data['createdAt'] = this.createdAt;
-    data['updatedAt'] = this.updatedAt;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['id'] = id;
+    data['tgl_pengaduan'] = tglPengaduan;
+    data['nik'] = nik;
+    data['isi_laporan'] = isiLaporan;
+    data['foto'] = foto;
+    data['url'] = url;
+    data['status'] = status;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
     return data;
   }
 }

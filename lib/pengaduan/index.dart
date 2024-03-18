@@ -8,13 +8,13 @@ class Pengaduan extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PengaduanController pengaduan_controller = Get.find<PengaduanController>();
+    PengaduanController pengaduanController = Get.find<PengaduanController>();
     return Scaffold(
         appBar: AppBar(
           title: const Text('Pengaduan'),
           actions: [
             IconButton(
-                onPressed: () => pengaduan_controller.getPengaduan(),
+                onPressed: () => pengaduanController.getPengaduan(),
                 icon: const Icon(Icons.access_alarm)),
             IconButton(
                 onPressed: () => Get.toNamed('/pengaduan/add'),
@@ -22,17 +22,13 @@ class Pengaduan extends StatelessWidget {
           ],
         ),
         body:
-            // Obx(() => controller.loading.value ? const Center(child: CircularProgressIndicator()) : ListView.builder(itemCount: controller.pengaduanList.value.length, itemBuilder: (BuildContext context, int index) {
-            //   final pengaduan = controller.pengaduanList.value[index];
-            //   return Card(elevation: 4, color: Colors.white, margin: const EdgeInsets.all(16), child: Image.network('${pengaduan.url}', scale: 0.5,),);
-            // },))
-            Obx(() => pengaduan_controller.loading.value
+            Obx(() => pengaduanController.loading.value
                 ? const Center(child: CircularProgressIndicator())
                 : ListView.builder(
-                    itemCount: pengaduan_controller.pengaduanList.value.length,
+                    itemCount: pengaduanController.pengaduanList.value.length,
                     itemBuilder: (BuildContext context, int index) {
                       final pengaduan =
-                          pengaduan_controller.pengaduanList.value[index];
+                          pengaduanController.pengaduanList.value[index];
 
                       return Card(
                         elevation: 4,
@@ -75,12 +71,12 @@ class Pengaduan extends StatelessWidget {
                                                   child: const Text('Cancel')),
                                               TextButton(
                                                   onPressed: () async {
-                                                    pengaduan_controller
+                                                    pengaduanController
                                                         .deletePengaduan(
                                                             pengaduan.id
                                                                 .toString());
                                                     Get.back();
-                                                    pengaduan_controller
+                                                    pengaduanController
                                                         .getPengaduan();
                                                   },
                                                   child: const Text('Delete'))

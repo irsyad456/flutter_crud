@@ -1,7 +1,5 @@
-import 'package:crud/model/pengaduan_model.dart';
 import 'package:crud/model/tanggapan_model.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -47,11 +45,9 @@ class TanggapanController extends GetxController{
         loading.value = false;
       } else {
         loading.value = false;
-        print('Error, Status Code: ${response.statusCode}');
       }
     } catch (e) {
       loading.value = false;
-      print(e.toString());
     }
   }
 
@@ -73,20 +69,21 @@ class TanggapanController extends GetxController{
         final newData = Tanggapan.fromJson(viewData);
         tanggapanList.value.add(newData);
         loading.value = false;
-        print('data berhasil ditambahkan');
         Get.back();
       } else if(response.statusCode == 400) {
         loading.value = false;
-        print('Pengaduan Does not Exist');
         Get.back();
+        Get.snackbar('Warning', "Pengaduan Doesn't Exist", duration: const Duration(seconds: 5));
+      } else if(response.statusCode == 204) {
+        loading.value = false;
+        Get.back();
+        Get.snackbar('Warning', 'Pengaduan Already Solved', duration: const Duration(seconds: 5));
       } else {
         loading.value = false;
-        print('Error, Status Code: ${response.statusCode}');
         Get.back();
       }
     } catch (e) {
       loading.value = false;
-      print('Terjadi kesalahan: $e');
     }
   }
 
@@ -106,15 +103,12 @@ class TanggapanController extends GetxController{
               tanggapanData; // Perbarui data di daftar di Flutter
         }
         loading.value = false;
-        print('Data berhasil diperbarui.');
         Get.back();
       } else {
         loading.value = false;
-        print('Gagal memperbarui data dengan status code: ${response.statusCode}');
       }
     } catch (e) {
       loading.value = false;
-      print('Terjadi kesalahan: $e');
     }
   }
 
@@ -129,14 +123,11 @@ class TanggapanController extends GetxController{
       if (response.statusCode == 200) {
         tanggapanList.value.removeWhere((item) => item.id.toString() == id);
         loading.value = false;
-        print('Data berhasil dihapus.');
       } else {
         loading.value = false;
-        print('Gagal menghapus data. Status: ${response.statusCode}');
       }
     } catch (e) {
       loading.value = false;
-      print('Terjadi kesalahan: $e');
     }
   }
 }

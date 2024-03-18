@@ -1,8 +1,6 @@
-import 'package:crud/controller/pengaduan_controller.dart';
 import 'package:file_picker/_internal/file_picker_web.dart';
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 
@@ -22,7 +20,6 @@ class UploadImageController extends GetxController {
       FilePickerResult? result = await FilePicker.platform.pickFiles(type: FileType.image);
       if(result != null) {
         pickedImage.value = result.files.first;
-        // fileInHandphone = File(pickedImage!.path.toString());
       }
       loading.value = false;
     } catch(error) {
@@ -40,10 +37,6 @@ class UploadImageController extends GetxController {
       if(result == null) return;
 
       pickedImage.value = result.files.first;
-      // fileInWebsite = Uint8List.fromList(pickedImage!.bytes!);
-      // if(kDebugMode) {
-      //   print(pickedImage);
-      // }
 
       loading.value = false;
     } catch(error) {

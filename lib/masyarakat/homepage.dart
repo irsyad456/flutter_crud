@@ -80,7 +80,7 @@ class HomePage extends StatelessWidget {
                               ),
                               onPressed: () {
                                 // Aksi Update
-                                Get.to(updateData(
+                                Get.to(UpdateData(
                                     item)); // Navigasi ke halaman Update
                               },
                             ),

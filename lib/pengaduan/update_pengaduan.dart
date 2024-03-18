@@ -1,13 +1,11 @@
 import 'dart:typed_data';
-
 import 'package:crud/controller/pengaduan_controller.dart';
 import 'package:crud/controller/upload_image_controller.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-import '../model/pengaduan_model.dart';
 
+// ignore: must_be_immutable
 class UpdatePengaduan extends StatelessWidget {
   String? isiLaporan;
   String? image;
@@ -65,7 +63,7 @@ class UpdatePengaduan extends StatelessWidget {
                   )),
               Obx(() {
                 return imageController.pickedImage.value != null
-                    ? Container(
+                    ? SizedBox(
                         width: 400,
                         height: 200,
                         child: Image.memory(
@@ -73,7 +71,7 @@ class UpdatePengaduan extends StatelessWidget {
                                 imageController.pickedImage.value!.bytes!),
                             fit: BoxFit.cover),
                       )
-                    : Container(
+                    : SizedBox(
                         width: 400,
                         height: 200,
                         child: Image.network(image ?? ''),
