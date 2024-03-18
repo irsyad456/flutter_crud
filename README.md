@@ -1,16 +1,27 @@
 # crud
 
-A new Flutter project.
+Ini adalah projek [flutter](https://flutter.dev/) crud. Projek ini menggunakan backend [pengaduan masyarakat](https://github.com/irsyad456/latihan-nodejs)
 
-## Getting Started
+## Installasi
+### Syarat
+- pastikan anda sudah menginstall flutter sdk dengan menjalani `flutter doctor` di terminal, jika belum lakukan petunjuk installasi di sini https://flutter.dev/docs/get-started/install.
+- direkomendasi untuk menggunakan IDE seperti [android studio](https://developer.android.com/studio) atau [Visual Studio Code](https://code.visualstudio.com/) untuk development
+### Clone Projek
+lakukan command ini di folder yang kamu ingin gunakan
+```bash
+git clone https://github.com/irsyad456/flutter_crud.git
+```
+### Download ZIP
+tekan tombol `Code` lalu pilih `Download ZIP`
 
-This project is a starting point for a Flutter application.
+## Menjalankan Aplikasi
+di folder projek yang sudah terinstall lakukan hal ini
+```bash
+// installasi dependensi
+flutter pub get
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+// jalani aplikasi
+flutter run
+```
+## Note Projek
+Projek ini dibuat untuk pembelajaran CRUD di flutter, diperbolehkan membuat issue baru apabila ditemukan bug
